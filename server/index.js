@@ -8,8 +8,7 @@ import passport from 'passport'
 
 import router from './router'
 import { connectToDatabase } from './database/connection'
-import { initialiseAuthentication } from './auth'
-import { utils } from './auth'
+import { initialiseAuthentication, utils } from './auth'
 import { ROLES } from '../utils'
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -21,10 +20,6 @@ const port = 3000
 nextApp.prepare().then(async () => {
   const app = express()
 
-  app.get('/my-custom-route', (req, res) =>
-    res.status(200).json({ hello: 'Hello, from the back-end world!' })
-  )
-
   app.use(urlencoded({ extended: true }))
   app.use(json())
   app.use(cookieParser())
@@ -35,8 +30,8 @@ nextApp.prepare().then(async () => {
   initialiseAuthentication(app)
 
   app.get(
-    '/admin-dashboard',  
-    passport.authenticate('jwt', { failureRedirect: '/login' }), 
+    '/admin-dashboard',
+    passport.authenticate('jwt', { failureRedirect: '/login' }),
     utils.checkIsInRole(ROLES.Admin),
     (req, res) => {
       return handle(req, res)

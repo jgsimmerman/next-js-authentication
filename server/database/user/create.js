@@ -1,4 +1,5 @@
 import { UserModel } from '../schema'
+import { ROLES } from '../../../utils'
 
 async function createUser({
   firstName,
@@ -6,7 +7,8 @@ async function createUser({
   email,
   password,
   providerId,
-  provider
+  provider, 
+  role
 }) {
   return new Promise(async (resolve, reject) => {
     const user = await UserModel.findOne({ email })
@@ -22,7 +24,8 @@ async function createUser({
         firstName,
         lastName,
         email,
-        password
+        password, 
+        role
       })
     )
   })

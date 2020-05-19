@@ -3,7 +3,7 @@ import { to } from 'await-to-js'
 import { verifyPassword, hashPassword, getRedirectUrl } from '../auth/utils'
 import { login } from '../auth/strategies/jwt'
 import { createUser, getUserByEmail } from '../database/user'
-
+import { ROLES } from '../../utils'
 const router = express.Router()
 
 router.post('/login', async (req, res) => {
@@ -54,7 +54,8 @@ router.post('/register', async (req, res) => {
       firstName,
       lastName,
       email,
-      password: await hashPassword(password)
+      password: await hashPassword(password),
+      role: ROLES.Customer
     })
   )
 

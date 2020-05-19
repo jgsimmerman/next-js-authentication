@@ -1,3 +1,13 @@
+# Authentication System
+This is an authentication system using Node.js, Express, and Passport.js, and built in Next.js
+It implements: 
+* Passport.js JWT strategy to issue and verify tokens, read cookies from each request, and populate users.
+* User Registration and Login
+* Role-based routes (Admin, Customer)
+* MongoDB and Mongoose back-end data 
+
+This was based on the tutorial found at: https://developerhandbook.com/passport.js/node-express-passport-authentication-mini-series/
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
